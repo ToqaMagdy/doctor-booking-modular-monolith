@@ -2,11 +2,9 @@ package com.pinkspring.doctorbooking.availability.controllers;
 
 import com.pinkspring.doctorbooking.availability.SlotDTO;
 import com.pinkspring.doctorbooking.availability.domain.DoctorSlotsService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.http.MediaType;
 
 @RestController
@@ -27,7 +25,12 @@ public class SlotsAvailabilityController {
             doctorSlotsService.addNewSlot(slot);
             return ResponseEntity.ok("Slot added successfully!!");
         }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.badRequest().body("Empty body !");
+    }
+
+    @GetMapping(path ="/slots",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Iterable<SlotDTO>> getAllSlots(){
+        return ResponseEntity.ok(doctorSlotsService.getAllSlots());
     }
 
 }
