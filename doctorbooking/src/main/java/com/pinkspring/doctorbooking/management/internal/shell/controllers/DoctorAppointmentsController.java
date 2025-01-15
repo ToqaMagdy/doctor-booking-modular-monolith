@@ -1,8 +1,8 @@
-package com.pinkspring.doctorbooking.management.shell.controllers;
+package com.pinkspring.doctorbooking.management.internal.shell.controllers;
 
-import com.pinkspring.doctorbooking.management.core.inputports.IUpdateAppointmentHandler;
-import com.pinkspring.doctorbooking.management.core.models.Appointment;
-import com.pinkspring.doctorbooking.management.core.outputports.IAppointmentRepo;
+import com.pinkspring.doctorbooking.management.internal.core.inputports.IUpdateAppointmentHandler;
+import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
+import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppointmentRepo;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/doctors/{id}/appointments")
+@RequestMapping("appointments")
 public class DoctorAppointmentsController {
 
     private final IAppointmentRepo appointmentRepo;
@@ -23,8 +23,8 @@ public class DoctorAppointmentsController {
     }
 
     @GetMapping
-    public List<Appointment> getAllDoctorsAppointments(@PathVariable("id") String doctorId) {
-        return appointmentRepo.getAllDoctorsAppointments(UUID.fromString(doctorId));
+    public List<Appointment> getAllDoctorsAppointments() {
+        return appointmentRepo.getAllDoctorsAppointments();
     }
 
     @PutMapping("/{appointmentId}/status")

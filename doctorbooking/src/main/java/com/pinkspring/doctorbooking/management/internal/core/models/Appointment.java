@@ -1,4 +1,4 @@
-package com.pinkspring.doctorbooking.management.core.models;
+package com.pinkspring.doctorbooking.management.internal.core.models;
 
 import lombok.*;
 

@@ -1,7 +1,8 @@
-package com.pinkspring.doctorbooking.management.shell.db;
+package com.pinkspring.doctorbooking.management.internal.shell.db;
 
-import com.pinkspring.doctorbooking.management.core.models.Appointment;
+import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
@@ -10,6 +11,7 @@ import java.util.UUID;
 @Entity
 public class AppointmentEntity {
     @Id
+    @GeneratedValue
     private UUID id;
     private UUID patientId;
     private UUID slotId;

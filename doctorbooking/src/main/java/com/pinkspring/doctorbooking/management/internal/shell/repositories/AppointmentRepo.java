@@ -1,8 +1,8 @@
-package com.pinkspring.doctorbooking.management.shell.repositories;
+package com.pinkspring.doctorbooking.management.internal.shell.repositories;
 
-import com.pinkspring.doctorbooking.management.core.models.Appointment;
-import com.pinkspring.doctorbooking.management.core.outputports.IAppointmentRepo;
-import com.pinkspring.doctorbooking.management.shell.db.AppointmentEntity;
+import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
+import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppointmentRepo;
+import com.pinkspring.doctorbooking.management.internal.shell.db.AppointmentEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,8 +16,8 @@ public class AppointmentRepo implements IAppointmentRepo {
     }
 
     @Override
-    public List<Appointment> getAllDoctorsAppointments(UUID doctorId) {
-        //should we get all slots with doctorId and then get all appointments with those slots?
+    public List<Appointment> getAllDoctorsAppointments() {
+        //TODO get all upcoming slots from availability module then get appointments for those slots
         return null;
     }
 

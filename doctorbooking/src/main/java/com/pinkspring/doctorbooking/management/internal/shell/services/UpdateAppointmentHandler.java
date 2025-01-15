@@ -1,8 +1,8 @@
-package com.pinkspring.doctorbooking.management.shell.services;
+package com.pinkspring.doctorbooking.management.internal.shell.services;
 
-import com.pinkspring.doctorbooking.management.core.inputports.IUpdateAppointmentHandler;
-import com.pinkspring.doctorbooking.management.core.models.Appointment;
-import com.pinkspring.doctorbooking.management.core.outputports.IAppointmentRepo;
+import com.pinkspring.doctorbooking.management.internal.core.inputports.IUpdateAppointmentHandler;
+import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
+import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppointmentRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -17,7 +17,6 @@ public class UpdateAppointmentHandler implements IUpdateAppointmentHandler {
 
     @Override
     public Appointment updateAppointmentStatus(UUID appointmentId, String status) {
-
         Appointment appointment = appointmentRepo.getAppointmentById(appointmentId);
         appointment.setStatus(status);
         appointmentRepo.save(appointment);
