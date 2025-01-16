@@ -4,5 +4,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ICreateAppointmentHandler {
-    public void createAppointment(CreateAppointmentDTO appointmentDTO);
+    //TODO: return AppointmentDTO instead of void
+    void createAppointment(CreateAppointmentDTO appointmentDTO);
 }
