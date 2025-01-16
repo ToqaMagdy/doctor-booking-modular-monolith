@@ -1,4 +1,6 @@
 package com.pinkspring.doctorbooking.management.shared;
 
-public record AppointmentCreationEvent (String patientId, String doctorId, String date) {
+import java.util.UUID;
+
+public record AppointmentCreationEvent (UUID patientId, String patientName, String date) {
 }

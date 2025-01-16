@@ -1,5 +1,6 @@
 package com.pinkspring.doctorbooking.management.internal.core.models;
 
+import com.pinkspring.doctorbooking.management.shared.CreateAppointmentDTO;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,12 +15,13 @@ public class Appointment {
     private LocalDate reservedAt;
     private String status;
 
-    public Appointment(UUID id, UUID patientId, UUID slotId, String patientName, LocalDate reservedAt) {
+    public Appointment(UUID id, UUID patientId, UUID slotId, String patientName, LocalDate reservedAt, String status) {
         this.id = id;
         this.patientId = patientId;
         this.slotId = slotId;
         this.patientName = patientName;
         this.reservedAt = reservedAt;
+        this.status = status;
     }
 
     public UUID getId() {
@@ -68,5 +70,9 @@ public class Appointment {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public static Appointment from(CreateAppointmentDTO appointmentDTO){
+        return new Appointment(UUID.randomUUID(), appointmentDTO.patientId(), appointmentDTO.slotId(), appointmentDTO.patientName(), LocalDate.now(), "RESERVED");
     }
 }
