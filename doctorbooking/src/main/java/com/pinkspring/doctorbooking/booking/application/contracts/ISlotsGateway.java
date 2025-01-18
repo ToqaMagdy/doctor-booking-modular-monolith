@@ -1,7 +1,7 @@
 package com.pinkspring.doctorbooking.booking.application.contracts;
 
 
-import com.pinkspring.doctorbooking.availability.SlotDTO;
+import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 
 import java.util.List;
 

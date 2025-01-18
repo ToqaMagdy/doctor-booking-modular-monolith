@@ -1,7 +1,7 @@
 package com.pinkspring.doctorbooking.availability.domain;
 
 import com.pinkspring.doctorbooking.availability.IslotService;
-import com.pinkspring.doctorbooking.availability.SlotDTO;
+import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.availability.data.Slot;
 import com.pinkspring.doctorbooking.availability.data.SlotRepository;
 import com.pinkspring.doctorbooking.availability.domain.events.SlotCreatedEvent;

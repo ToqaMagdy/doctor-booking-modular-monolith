@@ -1,4 +1,4 @@
-package com.pinkspring.doctorbooking.availability;
+package com.pinkspring.doctorbooking.availability.shared;
 
 import java.util.UUID;
 

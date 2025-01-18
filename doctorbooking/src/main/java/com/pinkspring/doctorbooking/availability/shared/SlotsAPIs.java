@@ -1,6 +1,5 @@
 package com.pinkspring.doctorbooking.availability.shared;
 
-import com.pinkspring.doctorbooking.availability.SlotDTO;
 import com.pinkspring.doctorbooking.availability.data.SlotRepository;
 import org.springframework.stereotype.Component;
 
