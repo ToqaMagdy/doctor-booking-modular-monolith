@@ -1,6 +1,6 @@
 package com.pinkspring.doctorbooking.booking.infrastructure.gateways;
 
-import com.pinkspring.doctorbooking.availability.SlotDTO;
+import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.booking.application.contracts.ISlotsGateway;
 import org.springframework.stereotype.Component;
 
