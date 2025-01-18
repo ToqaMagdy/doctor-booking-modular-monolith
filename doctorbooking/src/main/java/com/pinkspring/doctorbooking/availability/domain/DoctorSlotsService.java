@@ -47,7 +47,7 @@ public class DoctorSlotsService implements IslotService {
 
     public List<SlotDTO> getAllSlots(){
         List<Slot> slots= slotRepository.findAll();
-        return slots.stream().map(slot -> new SlotDTO(slot.getId(), slot.getDoctorId().toString(),
+        return slots.stream().map(slot -> new SlotDTO(slot.getId(), slot.getDoctorName(),
                 slot.getReserved(),
                 slot.getTime().format(formatter),
                 slot.getCost())).collect(Collectors.toList());
@@ -66,7 +66,7 @@ public class DoctorSlotsService implements IslotService {
     }
 
     private List<SlotDTO> mapToSlotDto(List<Slot> slots){
-        return slots.stream().map(slot -> new SlotDTO(slot.getId(), slot.getDoctorId().toString(),
+        return slots.stream().map(slot -> new SlotDTO(slot.getId(), slot.getDoctorName(),
                 slot.getReserved(),
                 slot.getTime().format(formatter),
                 slot.getCost())).collect(Collectors.toList());
