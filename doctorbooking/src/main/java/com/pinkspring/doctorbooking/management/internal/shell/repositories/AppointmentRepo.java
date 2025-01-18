@@ -24,10 +24,9 @@ public class AppointmentRepo implements IAppointmentRepo {
     @Override
     public List<Appointment> getAllDoctorsAppointments() {
         List<SlotDTO> upcomingSlots = slotsGateway.getAllUpcomingSlots();
-        List<Appointment> appointments = jpaAppointmentRepo.
+        return jpaAppointmentRepo.
                 findBySlotIdIn(upcomingSlots.stream().map(SlotDTO::id).toList())
                         .stream().map(AppointmentEntity::toDomain).toList();
-        return null;
     }
 
     @Override
