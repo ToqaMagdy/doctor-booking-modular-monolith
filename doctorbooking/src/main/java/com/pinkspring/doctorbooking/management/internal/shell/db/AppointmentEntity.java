@@ -20,7 +20,7 @@ public class AppointmentEntity {
     private String status;
 
     public Appointment toDomain(){
-        return new Appointment(id, patientId, slotId, patientName, reservedAt);
+        return new Appointment(id, patientId, slotId, patientName, reservedAt, "");
     }
 
     public static AppointmentEntity fromDomain(Appointment appointment){
