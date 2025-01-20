@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface ISlotsAPIs {
 
-    List<SlotDTO> getAvailableSlots();
+    List<SlotDTO> getAllAvailableSlots();
+    List<SlotDTO> getAllUpComingSlots();
 
 }

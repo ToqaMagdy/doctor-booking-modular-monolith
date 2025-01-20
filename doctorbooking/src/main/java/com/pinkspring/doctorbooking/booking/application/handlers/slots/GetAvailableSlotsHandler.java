@@ -1,8 +1,7 @@
-package com.pinkspring.doctorbooking.booking.application.handlers.viewslots;
+package com.pinkspring.doctorbooking.booking.application.handlers.slots;
 
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.booking.application.contracts.ISlotsGateway;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +16,6 @@ public class GetAvailableSlotsHandler {
     }
 
     public List<SlotDTO> handle(){
-        return slotsGateway.getAvailableSlots();
+        return slotsGateway.getAllAvailableSlots();
     }
 }
