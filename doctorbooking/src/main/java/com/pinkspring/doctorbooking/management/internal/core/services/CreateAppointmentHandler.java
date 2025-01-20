@@ -1,6 +1,5 @@
-package com.pinkspring.doctorbooking.management.internal.shell.services;
+package com.pinkspring.doctorbooking.management.internal.core.services;
 
-import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
 import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppointmentRepo;
 import com.pinkspring.doctorbooking.management.shared.AppointmentCreationEvent;
 import com.pinkspring.doctorbooking.management.shared.CreateAppointmentDTO;
@@ -22,7 +21,7 @@ public class CreateAppointmentHandler implements ICreateAppointmentHandler {
 
     @Override
     public void createAppointment(CreateAppointmentDTO appointmentDTO) {
-        appointmentRepo.save(Appointment.from(appointmentDTO));
+        appointmentRepo.save(appointmentDTO.toDomain());
         AppointmentCreationEvent event = new AppointmentCreationEvent(appointmentDTO.patientId(),
                 appointmentDTO.patientName(), LocalDate.now().toString());
         eventPublisher.publishEvent(event);

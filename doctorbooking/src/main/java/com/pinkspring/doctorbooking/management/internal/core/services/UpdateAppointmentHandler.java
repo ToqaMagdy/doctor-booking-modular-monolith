@@ -1,4 +1,4 @@
-package com.pinkspring.doctorbooking.management.internal.shell.services;
+package com.pinkspring.doctorbooking.management.internal.core.services;
 
 import com.pinkspring.doctorbooking.management.internal.core.inputports.IUpdateAppointmentHandler;
 import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;

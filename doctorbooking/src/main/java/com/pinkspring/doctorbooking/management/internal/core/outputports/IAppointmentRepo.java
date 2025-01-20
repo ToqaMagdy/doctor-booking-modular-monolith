@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IAppointmentRepo {
-    public List<Appointment> getAllDoctorsAppointments();
+    public List<Appointment> getAppointmentsBySlotIds(List<UUID> slotIds);
 
     public Appointment getAppointmentById(UUID appointmentId);
 
