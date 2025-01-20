@@ -1,6 +1,5 @@
 package com.pinkspring.doctorbooking.availability.domain;
 
-import com.pinkspring.doctorbooking.availability.IslotService;
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.availability.data.Slot;
 import com.pinkspring.doctorbooking.availability.data.SlotRepository;
@@ -16,7 +15,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class DoctorSlotsService implements IslotService {
+public class DoctorSlotsService {
     private final SlotRepository slotRepository;
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
     private final ApplicationEventPublisher eventPublisher;
@@ -53,22 +52,4 @@ public class DoctorSlotsService implements IslotService {
                 slot.getCost())).collect(Collectors.toList());
     }
 
-    @Override
-    public List<SlotDTO> getAllDoctorAvailableSlots() {
-        List<Slot> slots =slotRepository.findDoctorAvailableSlots();
-        return mapToSlotDto(slots);
-    }
-
-    @Override
-    public List<SlotDTO> getAllUpComingSlots() {
-        List<Slot> upcomingSlots =slotRepository.findUpComingSlots();
-        return mapToSlotDto(upcomingSlots);
-    }
-
-    private List<SlotDTO> mapToSlotDto(List<Slot> slots){
-        return slots.stream().map(slot -> new SlotDTO(slot.getId(), slot.getDoctorName(),
-                slot.getReserved(),
-                slot.getTime().format(formatter),
-                slot.getCost())).collect(Collectors.toList());
-    }
 }

@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.pinkspring.doctorbooking.availability.data.Slot;
 import com.pinkspring.doctorbooking.availability.data.SlotRepository;
 import com.pinkspring.doctorbooking.availability.domain.DoctorSlotsService;
+import com.pinkspring.doctorbooking.availability.domain.SlotsAPIs;
 import com.pinkspring.doctorbooking.availability.domain.events.SlotCreatedEvent;
+import com.pinkspring.doctorbooking.availability.shared.ISlotsAPIs;
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +29,13 @@ public class DoctorSlotsServiceTest {
 
     private DoctorSlotsService doctorSlotsService;
 
+    private ISlotsAPIs slotsAPIs;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         doctorSlotsService = new DoctorSlotsService(slotRepository, eventPublisher);
+        slotsAPIs = new SlotsAPIs(slotRepository);
     }
 
     @Test
@@ -101,7 +106,7 @@ public class DoctorSlotsServiceTest {
         when(slotRepository.findDoctorAvailableSlots()).thenReturn(slots);
 
         // Act
-        List<SlotDTO> availableSlots = doctorSlotsService.getAllDoctorAvailableSlots();
+        List<SlotDTO> availableSlots = slotsAPIs.getAllAvailableSlots();
 
         // Assert
         assertNotNull(availableSlots);
@@ -124,7 +129,7 @@ public class DoctorSlotsServiceTest {
         when(slotRepository.findUpComingSlots()).thenReturn(slots);
 
         // Act
-        List<SlotDTO> upcomingSlots = doctorSlotsService.getAllUpComingSlots();
+        List<SlotDTO> upcomingSlots = slotsAPIs.getAllUpComingSlots();
 
         // Assert
         assertNotNull(upcomingSlots);

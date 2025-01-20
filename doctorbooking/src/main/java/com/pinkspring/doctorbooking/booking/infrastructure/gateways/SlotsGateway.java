@@ -16,7 +16,8 @@ public class SlotsGateway implements ISlotsGateway {
     }
 
     @Override
-    public List<SlotDTO> getAvailableSlots() {
-        return slotsAPIs.getAvailableSlots();
+    public List<SlotDTO> getAllAvailableSlots() {
+        return slotsAPIs.getAllAvailableSlots();
     }
+
 }
