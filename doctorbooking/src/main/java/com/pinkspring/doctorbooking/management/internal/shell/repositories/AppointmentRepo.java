@@ -1,6 +1,5 @@
 package com.pinkspring.doctorbooking.management.internal.shell.repositories;
 
-import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
 import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppointmentRepo;
 import com.pinkspring.doctorbooking.management.internal.shell.application.IUpcomingSlotsGateway;
@@ -13,20 +12,17 @@ import java.util.UUID;
 @Repository
 public class AppointmentRepo implements IAppointmentRepo {
     private final JpaAppointmentRepo jpaAppointmentRepo;
-    private final IUpcomingSlotsGateway slotsGateway;
 
     public AppointmentRepo(JpaAppointmentRepo jpaAppointmentRepo,
                            IUpcomingSlotsGateway slotsGateway) {
         this.jpaAppointmentRepo = jpaAppointmentRepo;
-        this.slotsGateway = slotsGateway;
     }
 
     @Override
-    public List<Appointment> getAllDoctorsAppointments() {
-        List<SlotDTO> upcomingSlots = slotsGateway.getAllUpcomingSlots();
+    public List<Appointment> getAppointmentsBySlotIds(List<UUID> slotIds) {
         return jpaAppointmentRepo.
-                findBySlotIdIn(upcomingSlots.stream().map(SlotDTO::id).toList())
-                        .stream().map(AppointmentEntity::toDomain).toList();
+                findBySlotIdIn(slotIds).stream()
+                .map(AppointmentEntity::toDomain).toList();
     }
 
     @Override

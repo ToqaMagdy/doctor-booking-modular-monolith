@@ -1,12 +1,10 @@
 package com.pinkspring.doctorbooking.management.internal.core.models;
 
-import com.pinkspring.doctorbooking.management.shared.CreateAppointmentDTO;
 import lombok.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-@NoArgsConstructor
 public class Appointment {
     private UUID id;
     private UUID patientId;
@@ -72,7 +70,4 @@ public class Appointment {
         this.status = status;
     }
 
-    public static Appointment from(CreateAppointmentDTO appointmentDTO){
-        return new Appointment(UUID.randomUUID(), appointmentDTO.patientId(), appointmentDTO.slotId(), appointmentDTO.patientName(), LocalDate.now(), "RESERVED");
-    }
 }
