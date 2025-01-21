@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "slot")
-public class Slot  {
+@Table(name = "slots")
+public class Slots {
     @Id
     private UUID id;
     private String doctorName;

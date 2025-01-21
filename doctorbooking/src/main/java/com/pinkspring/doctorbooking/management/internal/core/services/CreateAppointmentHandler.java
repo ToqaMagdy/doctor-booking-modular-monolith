@@ -4,6 +4,7 @@ import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppoin
 import com.pinkspring.doctorbooking.management.shared.AppointmentCreationEvent;
 import com.pinkspring.doctorbooking.management.shared.CreateAppointmentDTO;
 import com.pinkspring.doctorbooking.management.shared.ICreateAppointmentHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 

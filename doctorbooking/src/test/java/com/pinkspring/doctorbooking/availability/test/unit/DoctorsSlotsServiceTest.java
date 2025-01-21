@@ -3,8 +3,8 @@ package com.pinkspring.doctorbooking.availability.test.unit;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.pinkspring.doctorbooking.availability.data.Slot;
-import com.pinkspring.doctorbooking.availability.data.SlotRepository;
+import com.pinkspring.doctorbooking.availability.data.Slots;
+import com.pinkspring.doctorbooking.availability.data.SlotsRepository;
 import com.pinkspring.doctorbooking.availability.domain.DoctorSlotsService;
 import com.pinkspring.doctorbooking.availability.domain.SlotsAPIs;
 import com.pinkspring.doctorbooking.availability.domain.events.SlotCreatedEvent;
@@ -19,10 +19,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-public class DoctorSlotsServiceTest {
+public class DoctorsSlotsServiceTest {
 
     @Mock
-    private SlotRepository slotRepository;
+    private SlotsRepository slotsRepository;
 
     @Mock
     private ApplicationEventPublisher eventPublisher;
@@ -34,8 +34,8 @@ public class DoctorSlotsServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        doctorSlotsService = new DoctorSlotsService(slotRepository, eventPublisher);
-        slotsAPIs = new SlotsAPIs(slotRepository);
+        doctorSlotsService = new DoctorSlotsService(slotsRepository, eventPublisher);
+        slotsAPIs = new SlotsAPIs(slotsRepository);
     }
 
     @Test
@@ -47,16 +47,16 @@ public class DoctorSlotsServiceTest {
         doctorSlotsService.addNewSlot(slotDTO);
 
         // Assert
-        ArgumentCaptor<Slot> slotArgumentCaptor = ArgumentCaptor.forClass(Slot.class);
-        verify(slotRepository, times(1)).save(slotArgumentCaptor.capture());
-        Slot savedSlot = slotArgumentCaptor.getValue();
+        ArgumentCaptor<Slots> slotArgumentCaptor = ArgumentCaptor.forClass(Slots.class);
+        verify(slotsRepository, times(1)).save(slotArgumentCaptor.capture());
+        Slots savedSlots = slotArgumentCaptor.getValue();
 
-        assertNotNull(savedSlot);
-        assertEquals("Test doctor", savedSlot.getDoctorName());
-        assertEquals(Boolean.FALSE, savedSlot.getReserved());
-        assertEquals(100.0, savedSlot.getCost());
-        assertEquals(UUID.fromString("ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59"), savedSlot.getDoctorId());
-        assertEquals(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")), savedSlot.getTime());
+        assertNotNull(savedSlots);
+        assertEquals("Test doctor", savedSlots.getDoctorName());
+        assertEquals(Boolean.FALSE, savedSlots.getReserved());
+        assertEquals(100.0, savedSlots.getCost());
+        assertEquals(UUID.fromString("ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59"), savedSlots.getDoctorId());
+        assertEquals(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")), savedSlots.getTime());
 
         verify(eventPublisher, times(1)).publishEvent(any(SlotCreatedEvent.class));
     }
@@ -64,17 +64,17 @@ public class DoctorSlotsServiceTest {
     @Test
     void testGetAllSlots() {
         // Arrange
-        Slot slot1 = new Slot();
-        slot1.setId(UUID.randomUUID());
-        slot1.setDoctorName("Test doctor");
-        slot1.setTime(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
-        slot1.setReserved(false);
-        slot1.setCost(100.0);
-        slot1.setDoctorId(UUID.fromString("ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59"));
+        Slots slots1 = new Slots();
+        slots1.setId(UUID.randomUUID());
+        slots1.setDoctorName("Test doctor");
+        slots1.setTime(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
+        slots1.setReserved(false);
+        slots1.setCost(100.0);
+        slots1.setDoctorId(UUID.fromString("ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59"));
 
 
-        List<Slot> slots = Collections.singletonList(slot1);
-        when(slotRepository.findAll()).thenReturn(slots);
+        List<Slots> slots = Collections.singletonList(slots1);
+        when(slotsRepository.findAll()).thenReturn(slots);
 
         // Act
         List<SlotDTO> slotDTOs = doctorSlotsService.getAllSlots();
@@ -84,7 +84,7 @@ public class DoctorSlotsServiceTest {
         assertEquals(1, slotDTOs.size());
 
         SlotDTO slotDTO = slotDTOs.get(0);
-        assertEquals(slot1.getId(), slotDTO.id());
+        assertEquals(slots1.getId(), slotDTO.id());
         assertEquals("Test doctor", slotDTO.doctorName());
         assertFalse(slotDTO.isReserved());
         assertEquals("16/01/2025 10:00 AM", slotDTO.dateTime());
@@ -94,16 +94,16 @@ public class DoctorSlotsServiceTest {
     @Test
     void testGetAllDoctorAvailableSlots() {
         // Arrange
-        Slot slot1 = new Slot();
-        slot1.setId(UUID.randomUUID());
-        slot1.setDoctorName("Test doctor");
-        slot1.setTime(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
-        slot1.setReserved(false);
-        slot1.setCost(100.0);
-        slot1.setDoctorId(UUID.fromString("ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59"));
+        Slots slots1 = new Slots();
+        slots1.setId(UUID.randomUUID());
+        slots1.setDoctorName("Test doctor");
+        slots1.setTime(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
+        slots1.setReserved(false);
+        slots1.setCost(100.0);
+        slots1.setDoctorId(UUID.fromString("ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59"));
 
-        List<Slot> slots = Collections.singletonList(slot1);
-        when(slotRepository.findDoctorAvailableSlots()).thenReturn(slots);
+        List<Slots> slots = Collections.singletonList(slots1);
+        when(slotsRepository.findDoctorAvailableSlots()).thenReturn(slots);
 
         // Act
         List<SlotDTO> availableSlots = slotsAPIs.getAllAvailableSlots();
@@ -118,15 +118,15 @@ public class DoctorSlotsServiceTest {
     @Test
     void testGetAllUpComingSlots() {
         // Arrange
-        Slot slot1 = new Slot();
-        slot1.setId(UUID.randomUUID());
-        slot1.setDoctorName("Test doctor");
-        slot1.setTime(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
-        slot1.setReserved(false);
-        slot1.setCost(100.0);
+        Slots slots1 = new Slots();
+        slots1.setId(UUID.randomUUID());
+        slots1.setDoctorName("Test doctor");
+        slots1.setTime(LocalDateTime.parse("16/01/2025 10:00 AM", DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a")));
+        slots1.setReserved(false);
+        slots1.setCost(100.0);
 
-        List<Slot> slots = Collections.singletonList(slot1);
-        when(slotRepository.findUpComingSlots()).thenReturn(slots);
+        List<Slots> slots = Collections.singletonList(slots1);
+        when(slotsRepository.findUpComingSlots()).thenReturn(slots);
 
         // Act
         List<SlotDTO> upcomingSlots = slotsAPIs.getAllUpComingSlots();

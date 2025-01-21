@@ -9,10 +9,10 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
-@Table(name = "doctor")
+@Table(name = "doctors")
 @Getter
 @Setter
-public class Doctor {
+public class Doctors {
     @Id
     private UUID id;
     private String name;

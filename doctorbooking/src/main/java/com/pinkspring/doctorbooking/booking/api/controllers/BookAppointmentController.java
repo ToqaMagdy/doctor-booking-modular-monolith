@@ -23,7 +23,7 @@ public class BookAppointmentController {
                 request.patientId(),
                 request.patientName(),
                 request.slotId());
-        //return bookAppointmentHandler.handle(newAppointment);
+        bookAppointmentHandler.handle(newAppointment);
     }
 
 }

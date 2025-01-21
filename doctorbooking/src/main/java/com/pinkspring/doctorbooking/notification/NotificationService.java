@@ -1,6 +1,5 @@
 package com.pinkspring.doctorbooking.notification;
 
-import com.pinkspring.doctorbooking.availability.data.Slot;
 import com.pinkspring.doctorbooking.availability.domain.events.SlotCreatedEvent;
 import com.pinkspring.doctorbooking.management.shared.AppointmentCreationEvent;
 import org.springframework.context.event.EventListener;

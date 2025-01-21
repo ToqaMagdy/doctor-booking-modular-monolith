@@ -16,6 +16,7 @@ public class GetAvailableSlotsController {
 
     @GetMapping("/slots")
     public ResponseEntity<?> getAvailableSlots() {
-        return (ResponseEntity<?>) getAvailableSlotsHandler.handle();
+        //TODO: paginated response
+        return ResponseEntity.ok(getAvailableSlotsHandler.handle());
     }
 }

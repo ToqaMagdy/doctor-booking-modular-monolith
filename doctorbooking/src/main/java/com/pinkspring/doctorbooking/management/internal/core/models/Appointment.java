@@ -1,7 +1,5 @@
 package com.pinkspring.doctorbooking.management.internal.core.models;
 
-import lombok.*;
-
 import java.time.LocalDate;
 import java.util.UUID;
 
