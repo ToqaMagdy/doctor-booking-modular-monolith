@@ -1,4 +1,4 @@
-package com.pinkspring.doctorbooking.booking.application.handlers.booking;
+package com.pinkspring.doctorbooking.booking.application.commands.BookAppointment;
 
 import java.util.UUID;
 

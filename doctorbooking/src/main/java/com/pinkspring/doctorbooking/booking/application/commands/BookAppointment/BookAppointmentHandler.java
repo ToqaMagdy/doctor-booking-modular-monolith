@@ -1,4 +1,4 @@
-package com.pinkspring.doctorbooking.booking.application.handlers.booking;
+package com.pinkspring.doctorbooking.booking.application.commands.BookAppointment;
 
 import com.pinkspring.doctorbooking.booking.infrastructure.gateways.AppointmentManagementGateway;
 import com.pinkspring.doctorbooking.management.shared.CreateAppointmentDTO;
