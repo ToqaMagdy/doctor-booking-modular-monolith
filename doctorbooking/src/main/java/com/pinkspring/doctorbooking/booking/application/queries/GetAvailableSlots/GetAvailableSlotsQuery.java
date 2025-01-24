@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class GetAvailableSlotsQuery implements IQuery {
 
     @Min(value = 0, message = "Min page number is 0")
@@ -16,4 +15,9 @@ public class GetAvailableSlotsQuery implements IQuery {
     @Min(value = 1, message = "Max page size is 50")
     @Max(value = 50, message = "Max page size is 50")
     private int size = 10;
+
+    public GetAvailableSlotsQuery(int page, int size) {
+        this.page = page;
+        this.size = size;
+    }
 }
