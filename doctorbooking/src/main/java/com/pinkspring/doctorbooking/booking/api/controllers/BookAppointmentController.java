@@ -1,10 +1,9 @@
 package com.pinkspring.doctorbooking.booking.api.controllers;
 
 import com.pinkspring.doctorbooking.booking.api.dto.BookAppointmentRequest;
-import com.pinkspring.doctorbooking.booking.application.handlers.booking.BookAppointment;
-import com.pinkspring.doctorbooking.booking.application.handlers.booking.BookAppointmentHandler;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import com.pinkspring.doctorbooking.booking.application.commands.BookAppointment.BookAppointment;
+import com.pinkspring.doctorbooking.booking.application.commands.BookAppointment.BookAppointmentHandler;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +17,7 @@ public class BookAppointmentController {
     }
 
     @PostMapping("/appointments")
-    public void bookAppointment(BookAppointmentRequest request) {
+    public void bookAppointment(@Valid BookAppointmentRequest request) {
         BookAppointment newAppointment = new BookAppointment(
                 request.patientId(),
                 request.patientName(),
