@@ -4,9 +4,12 @@ import com.pinkspring.doctorbooking.booking.api.dto.BookAppointmentRequest;
 import com.pinkspring.doctorbooking.booking.application.commands.BookAppointment.BookAppointment;
 import com.pinkspring.doctorbooking.booking.application.commands.BookAppointment.BookAppointmentHandler;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class BookAppointmentController {
 
@@ -17,7 +20,8 @@ public class BookAppointmentController {
     }
 
     @PostMapping("/appointments")
-    public void bookAppointment(@Valid BookAppointmentRequest request) {
+    public void bookAppointment(@Valid @RequestBody BookAppointmentRequest request) {
+        log.info("Received request to book an appointment");
         BookAppointment newAppointment = new BookAppointment(
                 request.patientId(),
                 request.patientName(),

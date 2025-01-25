@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+import static com.pinkspring.doctorbooking.commons.api.constants.Urls.APPOINTMENTS_PREFIX;
+
 @RestController
-@RequestMapping("appointments")
+@RequestMapping(APPOINTMENTS_PREFIX)
 public class DoctorAppointmentsController {
 
     private final IUpcomingAppointmentsQuery upcomingAppointmentsQuery;
@@ -23,7 +25,7 @@ public class DoctorAppointmentsController {
     }
 
     @GetMapping
-    public List<Appointment> getAllDoctorsAppointments() {
+    public List<Appointment> getAllDoctorUpcomingAppointments() {
         return upcomingAppointmentsQuery.getUpcomingDoctorsAppointments();
     }
 

@@ -1,5 +1,6 @@
 package com.pinkspring.doctorbooking.availability.domain;
 
+import com.pinkspring.doctorbooking.availability.controllers.CreateSlotRequest;
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.availability.data.Slots;
 import com.pinkspring.doctorbooking.availability.data.SlotsRepository;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -26,21 +26,17 @@ public class DoctorSlotsService {
         this.eventPublisher = eventPublisher;
     }
 
-    public void addNewSlot(SlotDTO slotDTO) {
-        String doctorUUID="ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59";
-        String doctorName = "Test doctor";
+    public void addNewSlot(CreateSlotRequest newSlot) {
         Slots slots = new Slots();
-
-        slots.setDoctorName(doctorName);
-        slots.setTime(LocalDateTime.parse(slotDTO.dateTime(), formatter));
-        slots.setDoctorId(UUID.fromString(doctorUUID));
+        slots.setDoctorId(newSlot.doctorId());
+        slots.setDoctorName(newSlot.doctorName());
+        slots.setTime(LocalDateTime.parse(newSlot.time(), formatter));
         slots.setReserved(Boolean.FALSE);
-        slots.setCost(slotDTO.cost());
-        slots.setId(UUID.randomUUID());
+        slots.setCost(newSlot.cost());
 
         slotsRepository.save(slots);
         // publish event after slot added
-        SlotCreatedEvent slotCreatedEvent = new SlotCreatedEvent(doctorName);
+        SlotCreatedEvent slotCreatedEvent = new SlotCreatedEvent(newSlot.doctorName());
         eventPublisher.publishEvent(slotCreatedEvent);
     }
 

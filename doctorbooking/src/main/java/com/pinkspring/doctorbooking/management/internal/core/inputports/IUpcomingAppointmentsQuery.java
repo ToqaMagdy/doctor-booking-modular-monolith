@@ -8,5 +8,5 @@ import java.util.List;
 @Service
 public interface IUpcomingAppointmentsQuery {
 
-    public List<Appointment> getUpcomingDoctorsAppointments();
+    List<Appointment> getUpcomingDoctorsAppointments();
 }
