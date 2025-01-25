@@ -10,5 +10,5 @@ public interface IAppointmentRepo {
 
     public Appointment getAppointmentById(UUID appointmentId);
 
-    public void save(Appointment appointment);
+    public Appointment save(Appointment appointment);
 }

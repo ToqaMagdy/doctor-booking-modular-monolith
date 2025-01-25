@@ -1,4 +1,4 @@
-package com.pinkspring.doctorbooking.management.internal.shell.application;
+package com.pinkspring.doctorbooking.management.internal.core.outputports;
 
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;

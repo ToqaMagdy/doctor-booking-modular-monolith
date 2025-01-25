@@ -2,7 +2,7 @@ package com.pinkspring.doctorbooking.management.internal.shell.repositories;
 
 import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
 import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppointmentRepo;
-import com.pinkspring.doctorbooking.management.internal.shell.application.IUpcomingSlotsGateway;
+import com.pinkspring.doctorbooking.management.internal.core.outputports.IUpcomingSlotsGateway;
 import com.pinkspring.doctorbooking.management.internal.shell.db.AppointmentEntity;
 import org.springframework.stereotype.Repository;
 
@@ -31,8 +31,8 @@ public class AppointmentRepo implements IAppointmentRepo {
     }
 
     @Override
-    public void save(Appointment appointment) {
+    public Appointment save(Appointment appointment) {
         AppointmentEntity entity = AppointmentEntity.fromDomain(appointment);
-        jpaAppointmentRepo.save(entity);
+        return jpaAppointmentRepo.save(entity).toDomain();
     }
 }
