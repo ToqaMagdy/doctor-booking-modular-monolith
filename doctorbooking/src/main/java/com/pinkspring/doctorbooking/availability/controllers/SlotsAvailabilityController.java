@@ -1,5 +1,6 @@
 package com.pinkspring.doctorbooking.availability.controllers;
 
+import com.pinkspring.doctorbooking.availability.data.Slots;
 import com.pinkspring.doctorbooking.availability.domain.DoctorSlotsService;
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import org.springframework.http.HttpStatus;
@@ -9,8 +10,10 @@ import org.springframework.http.MediaType;
 
 import java.util.List;
 
+import static com.pinkspring.doctorbooking.commons.api.constants.Urls.DOCTORS_PREFIX;
+
 @RestController
-@RequestMapping("/api/doctors")
+@RequestMapping(DOCTORS_PREFIX)
 public class SlotsAvailabilityController {
 
     private final DoctorSlotsService doctorSlotsService;
@@ -21,10 +24,9 @@ public class SlotsAvailabilityController {
 
 
     @PostMapping(path ="/slots",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<String> createSlot(@RequestBody SlotDTO slot){
-        if(slot != null) {
-
-            doctorSlotsService.addNewSlot(slot);
+    public ResponseEntity<String> createSlot(@RequestBody CreateSlotRequest request){
+        if(request != null) {
+            doctorSlotsService.addNewSlot(request);
             return ResponseEntity.ok("Slot added successfully!!");
         }
         return ResponseEntity.badRequest().body("Empty body !");

@@ -1,8 +1,7 @@
 package com.pinkspring.doctorbooking.availability.data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -10,6 +9,7 @@ import java.util.UUID;
 @Table(name = "slots")
 public class Slots {
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String doctorName;
     private LocalDateTime time;

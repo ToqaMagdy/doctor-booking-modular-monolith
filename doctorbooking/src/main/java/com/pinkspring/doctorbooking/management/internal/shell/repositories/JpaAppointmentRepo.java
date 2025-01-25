@@ -10,5 +10,5 @@ import java.util.UUID;
 @Repository
 public interface JpaAppointmentRepo extends JpaRepository<AppointmentEntity, UUID> {
 
-    public List<AppointmentEntity> findBySlotIdIn(List<UUID> slotIds);
+    List<AppointmentEntity> findBySlotIdIn(List<UUID> slotIds);
 }

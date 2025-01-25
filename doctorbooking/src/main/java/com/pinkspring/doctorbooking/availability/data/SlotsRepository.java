@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SlotsRepository extends JpaRepository<Slots, UUID> {
-    @Query(value ="select s.id,s.doctorName, s.doctorId, s.isReserved, s.time, s.cost from Slots s where s.isReserved = false", nativeQuery = true)
+    @Query(value ="select s.id, s.doctor_name, s.doctor_id, s.is_reserved, s.time, s.cost from Slots s where s.is_reserved = false", nativeQuery = true)
     List<Slots> findDoctorAvailableSlots();
 
-    @Query(value ="select s.id,s.doctorName, s.isReserved, s.time, s.cost from Slots s where s.time > CURRENT_TIMESTAMP", nativeQuery = true)
+    @Query(value ="select s.id, s.doctor_name, s.doctor_id, s.is_reserved, s.time, s.cost from Slots s where s.time > CURRENT_TIMESTAMP", nativeQuery = true)
     List<Slots> findUpComingSlots();
 }
