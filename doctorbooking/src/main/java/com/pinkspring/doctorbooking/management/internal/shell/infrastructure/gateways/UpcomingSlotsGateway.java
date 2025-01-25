@@ -2,7 +2,7 @@ package com.pinkspring.doctorbooking.management.internal.shell.infrastructure.ga
 
 import com.pinkspring.doctorbooking.availability.shared.ISlotsAPIs;
 import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
-import com.pinkspring.doctorbooking.management.internal.shell.application.IUpcomingSlotsGateway;
+import com.pinkspring.doctorbooking.management.internal.core.outputports.IUpcomingSlotsGateway;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

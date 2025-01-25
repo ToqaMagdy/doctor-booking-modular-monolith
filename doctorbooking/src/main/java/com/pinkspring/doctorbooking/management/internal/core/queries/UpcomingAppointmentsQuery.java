@@ -4,7 +4,7 @@ import com.pinkspring.doctorbooking.availability.shared.SlotDTO;
 import com.pinkspring.doctorbooking.management.internal.core.inputports.IUpcomingAppointmentsQuery;
 import com.pinkspring.doctorbooking.management.internal.core.models.Appointment;
 import com.pinkspring.doctorbooking.management.internal.core.outputports.IAppointmentRepo;
-import com.pinkspring.doctorbooking.management.internal.shell.application.IUpcomingSlotsGateway;
+import com.pinkspring.doctorbooking.management.internal.core.outputports.IUpcomingSlotsGateway;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
