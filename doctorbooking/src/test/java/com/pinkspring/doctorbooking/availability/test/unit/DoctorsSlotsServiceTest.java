@@ -3,6 +3,7 @@ package com.pinkspring.doctorbooking.availability.test.unit;
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
+import com.pinkspring.doctorbooking.availability.controllers.CreateSlotRequest;
 import com.pinkspring.doctorbooking.availability.data.Slots;
 import com.pinkspring.doctorbooking.availability.data.SlotsRepository;
 import com.pinkspring.doctorbooking.availability.domain.DoctorSlotsService;
@@ -41,10 +42,10 @@ public class DoctorsSlotsServiceTest {
     @Test
     void testAddNewSlot() {
         // Arrange
-        SlotDTO slotDTO = new SlotDTO(null, "ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59", false, "16/01/2025 10:00 AM", 100.0);
+        CreateSlotRequest request = new CreateSlotRequest("16/01/2025 10:00 AM", UUID.fromString("ba97e6c5-b6a2-4762-b9ec-c6c4504e1c59"), "Test doctor", false, 100.0);
 
         // Act
-        doctorSlotsService.addNewSlot(slotDTO);
+        doctorSlotsService.addNewSlot(request);
 
         // Assert
         ArgumentCaptor<Slots> slotArgumentCaptor = ArgumentCaptor.forClass(Slots.class);

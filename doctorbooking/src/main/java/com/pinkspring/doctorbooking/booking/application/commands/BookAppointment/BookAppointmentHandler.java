@@ -2,6 +2,7 @@ package com.pinkspring.doctorbooking.booking.application.commands.BookAppointmen
 
 import com.pinkspring.doctorbooking.booking.infrastructure.gateways.AppointmentManagementGateway;
 import com.pinkspring.doctorbooking.management.shared.CreateAppointmentDTO;
+import com.pinkspring.doctorbooking.management.shared.CreatedAppointmentDTO;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,8 +14,8 @@ public class BookAppointmentHandler {
         this.appointmentManagementGateway = appointmentManagementGateway;
     }
 
-    public void handle(BookAppointment bookAppointment) {
-        appointmentManagementGateway.bookAppointment(
+    public CreatedAppointmentDTO handle(BookAppointment bookAppointment) {
+       return appointmentManagementGateway.bookAppointment(
                 new CreateAppointmentDTO(
                         bookAppointment.patientId(),
                         bookAppointment.slotId(),

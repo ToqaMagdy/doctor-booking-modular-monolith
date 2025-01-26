@@ -3,8 +3,12 @@ package com.pinkspring.doctorbooking.booking.api.controllers;
 import com.pinkspring.doctorbooking.booking.api.dto.BookAppointmentRequest;
 import com.pinkspring.doctorbooking.booking.application.commands.BookAppointment.BookAppointment;
 import com.pinkspring.doctorbooking.booking.application.commands.BookAppointment.BookAppointmentHandler;
+import com.pinkspring.doctorbooking.management.shared.CreatedAppointmentDTO;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,12 +21,12 @@ public class BookAppointmentController {
     }
 
     @PostMapping("/appointments")
-    public void bookAppointment(@Valid BookAppointmentRequest request) {
+    public ResponseEntity<CreatedAppointmentDTO> bookAppointment(@Valid @RequestBody BookAppointmentRequest request) {
         BookAppointment newAppointment = new BookAppointment(
                 request.patientId(),
                 request.patientName(),
                 request.slotId());
-        bookAppointmentHandler.handle(newAppointment);
+        return ResponseEntity.ok(bookAppointmentHandler.handle(newAppointment));
     }
 
 }
