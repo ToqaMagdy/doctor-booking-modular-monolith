@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 public class GetAvailableSlotsController {
 
@@ -24,7 +23,6 @@ public class GetAvailableSlotsController {
 
     @GetMapping("/slots/available")
     public ResponseEntity<List<SlotDTO>> getAvailableSlots(@Valid GetAvailableSlotsRequest request) {
-        log.info("Received request to get available slots");
         GetAvailableSlotsQuery query = new GetAvailableSlotsQuery(
                 request.getPage(),
                 request.getSize()
